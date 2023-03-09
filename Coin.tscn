@@ -1,0 +1,47 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Sprites/2x/image 10.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/2x/image 4.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/2x/image 15.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/2x/image 3.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/2x/image 7.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/2x/image 9.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/2x/image 6.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/2x/image 11.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/2x/image 2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/2x/image 16.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/2x/image 1.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/2x/image 12.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/2x/image 14.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/2x/image 13.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/2x/image 8.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/2x/image 5.png" type="Texture" id=16]
+[ext_resource path="res://Coin2d.gd" type="Script" id=17]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 16 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 3 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "coin",
+"speed": 16.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 58, 65.5 )
+
+[node name="Coin" type="Node2D"]
+
+[node name="Coin2d" type="Area2D" parent="."]
+script = ExtResource( 17 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Coin2d"]
+frames = SubResource( 1 )
+animation = "coin"
+frame = 14
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin2d"]
+position = Vector2( -1, 0.5 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Coin2d" to="Coin2d" method="_on_Coin2d_body_entered"]
